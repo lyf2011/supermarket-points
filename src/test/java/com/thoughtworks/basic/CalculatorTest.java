@@ -11,7 +11,6 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class CalculatorTest {
-    private List<BasicRules> rules = Arrays.asList(new OnlyBuySales(), new OnlyBuyNormal(), new MixinRules());
 
     @Test
     public void should_return_3000_when_only_buy_2000_yuan_goods_in_sales(){
@@ -22,7 +21,7 @@ public class CalculatorTest {
 
         sales.addSales(good1);
 
-        BigDecimal result = calculator.calculate(Arrays.asList(good1),sales,rules);
+        BigDecimal result = calculator.calculate(Arrays.asList(good1),sales);
 
         MatcherAssert.assertThat(result, is(BigDecimal.valueOf(3000)));
     }
@@ -36,7 +35,7 @@ public class CalculatorTest {
         Goods good2 = new Goods("watermelon", BigDecimal.valueOf(50));
         Goods good3 = new Goods("milk", BigDecimal.valueOf(10));
 
-        BigDecimal result = calculator.calculate(Arrays.asList(good1,good2,good3),sales,rules);
+        BigDecimal result = calculator.calculate(Arrays.asList(good1,good2,good3),sales);
 
         MatcherAssert.assertThat(result, is(BigDecimal.valueOf(100)));
     }
@@ -51,7 +50,7 @@ public class CalculatorTest {
 
         sales.addSales(TV);
 
-        BigDecimal result = calculator.calculate(Arrays.asList(TV,washer),sales,rules);
+        BigDecimal result = calculator.calculate(Arrays.asList(TV,washer),sales);
 
         MatcherAssert.assertThat(result, is(BigDecimal.valueOf(2900)));
     }
